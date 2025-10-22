@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Austin Pool Market Report &mdash; October 2025</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0f172a;
+        --panel: rgba(15, 23, 42, 0.78);
+        --glass: rgba(255, 255, 255, 0.08);
+        --ink: #e2e8f0;
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.18);
+        --muted: #94a3b8;
+        --highlight: #f8fafc;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        line-height: 1.55;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 55%), radial-gradient(circle at bottom left, rgba(129, 140, 248, 0.18), transparent 45%), #020617;
+        color: var(--ink);
+        padding: 80px 24px 120px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        width: min(1080px, 100%);
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.86));
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 28px;
+        padding: 56px 56px 72px;
+        box-shadow: 0 35px 120px rgba(2, 6, 23, 0.55);
+        backdrop-filter: blur(24px);
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 3.4vw, 3.2rem);
+        letter-spacing: -0.04em;
+      }
+
+      .badge {
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        letter-spacing: 0.32em;
+        color: var(--muted);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-size: 0.86rem;
+        letter-spacing: 0.03em;
+      }
+
+      section {
+        margin-top: 56px;
+      }
+
+      section h2 {
+        margin: 0 0 18px;
+        font-size: 1.55rem;
+        letter-spacing: -0.01em;
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: inset 0 1px 0 rgba(248, 250, 252, 0.04);
+      }
+
+      .panel h3 {
+        margin: 0 0 12px;
+        font-size: 1.12rem;
+      }
+
+      .panel ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .callout {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        background: linear-gradient(120deg, rgba(56, 189, 248, 0.14), rgba(59, 130, 246, 0.28));
+        border-radius: 16px;
+        padding: 22px 28px;
+        border: 1px solid rgba(56, 189, 248, 0.32);
+        box-shadow: 0 18px 45px rgba(56, 189, 248, 0.22);
+      }
+
+      .callout strong {
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+      }
+
+      thead {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+      }
+
+      tbody tr {
+        border-top: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      th,
+      td {
+        padding: 16px 14px;
+        text-align: left;
+      }
+
+      tbody tr:hover {
+        background: rgba(148, 163, 184, 0.06);
+      }
+
+      .metric {
+        font-size: 2.4rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+        color: var(--highlight);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .bars {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .bar {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .bar-label {
+        color: var(--muted);
+        font-size: 0.92rem;
+        letter-spacing: 0.01em;
+      }
+
+      .bar-track {
+        position: relative;
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.14);
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(56, 189, 248, 0.9), rgba(14, 165, 233, 0.65));
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .chip {
+        background: rgba(148, 163, 184, 0.1);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 0.84rem;
+        color: var(--highlight);
+      }
+
+      .footnote {
+        margin-top: 64px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 32px 16px 80px;
+        }
+
+        .container {
+          padding: 40px 24px 56px;
+        }
+
+        header {
+          flex-direction: column;
+        }
+
+        .bar {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .bar-label {
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="container">
+      <header>
+        <div>
+          <p class="badge">BoringMarketer Competitive Intel</p>
+          <h1>Austin Pool Market Deep Dive</h1>
+          <p class="tag">Generated Oct&nbsp;22&nbsp;2025 &middot; Austin, TX</p>
+        </div>
+        <div class="panel" style="max-width: 280px">
+          <h3>Snapshot</h3>
+          <p class="metric">15+</p>
+          <p class="muted">pool builders + service brands surfaced in Google Maps from a single query.</p>
+          <div class="chips">
+            <span class="chip">High density</span>
+            <span class="chip">Luxury bias</span>
+            <span class="chip">Review gaps</span>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <div class="callout">
+          <strong>Takeaway</strong>
+          <p>
+            Austin’s pool market is saturated at the luxury end, yet most boutique builders sit below 100 reviews. South and East Austin remain underrepresented, creating white space for maintenance-first offerings, localized SEO pages, and rapid review accelerators.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Review Volume Comparison</h2>
+        <p class="muted">Denali and Cody Pools dominate total review share, producing outsized trust signals. Boutique players can close the gap with structured review sprints.</p>
+        <div class="panel">
+          <div class="bars">
+            <div class="bar">
+              <span class="bar-label">Denali Pools (Cedar Park)</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 100%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">Cody Pools (multi-location)</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">Denali Pools (Austin)</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 38%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">POOL LUX LLC</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 22%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">Reliant Pools</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 18%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">Wild Basin Pools</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 12%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span class="bar-label">Westbank Pools</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 10%"></div>
+              </div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top: 12px; font-size: 0.82rem">
+            Bars scaled relative to Denali Pools’ 1,000+ review footprint (Google Maps MCP, Oct&nbsp;2025).
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Competitive Landscape</h2>
+        <p class="muted">Core players ranked by rating and review count. Use for outreach shortlists, competitive tear-downs, or gap analyses.</p>
+        <div class="panel" style="overflow-x: auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Primary Offer</th>
+                <th>Location</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Reliant Pools</td>
+                <td>4.9</td>
+                <td>51</td>
+                <td>High-end custom builds</td>
+                <td>12343 Hymeadow Dr #3a, Austin 78750</td>
+                <td>(512) 407-2623</td>
+              </tr>
+              <tr>
+                <td>Denali Pools (Cedar Park)</td>
+                <td>4.9</td>
+                <td>1,000+</td>
+                <td>Design + build + patios/hot tubs</td>
+                <td>4350 E Whitestone Blvd, Cedar Park 78613</td>
+                <td>(512) 522-4977</td>
+              </tr>
+              <tr>
+                <td>Denali Pools (Austin)</td>
+                <td>5.0</td>
+                <td>101</td>
+                <td>Luxury custom pools</td>
+                <td>7700 State Hwy 71 Ste 130-7, Austin 78735</td>
+                <td>(512) 522-4977</td>
+              </tr>
+              <tr>
+                <td>Cascade Custom Pools</td>
+                <td>4.9</td>
+                <td>57</td>
+                <td>Residential + commercial pools</td>
+                <td>14623 State Hwy 71 W, Austin 78738</td>
+                <td>(512) 264-2453</td>
+              </tr>
+              <tr>
+                <td>Athena Pools</td>
+                <td>4.9</td>
+                <td>30</td>
+                <td>Design, construction, remodeling</td>
+                <td>1206 Cullen Ave, Austin 78757</td>
+                <td>(512) 914-0554</td>
+              </tr>
+              <tr>
+                <td>POOL LUX LLC</td>
+                <td>5.0</td>
+                <td>73</td>
+                <td>Design-to-maintenance custom pools</td>
+                <td>3201 Holton St #2, Austin 78702</td>
+                <td>(512) 761-0603</td>
+              </tr>
+              <tr>
+                <td>Wild Basin Pools</td>
+                <td>5.0</td>
+                <td>29</td>
+                <td>Boutique luxury builds</td>
+                <td>15210 Fitzhugh Rd Suite 303, Austin 78736</td>
+                <td>(512) 236-5448</td>
+              </tr>
+              <tr>
+                <td>Austin Pools</td>
+                <td>4.8</td>
+                <td>22</td>
+                <td>Backyard pools & outdoor living</td>
+                <td>14916 Copper Ridge Ln, Austin 78734</td>
+                <td>(512) 992-0216</td>
+              </tr>
+              <tr>
+                <td>Westbank Pools</td>
+                <td>5.0</td>
+                <td>20</td>
+                <td>Luxury design/build</td>
+                <td>555 W 5th St, Austin 78701</td>
+                <td>(737) 990-9077</td>
+              </tr>
+              <tr>
+                <td>Austin Dreamscapes Custom Pools</td>
+                <td>5.0</td>
+                <td>33</td>
+                <td>Custom pools + outdoor kitchens</td>
+                <td>11620 Hero Way W Ste 130-214, Leander 78641</td>
+                <td>(512) 883-7665</td>
+              </tr>
+              <tr>
+                <td>Cody Pools (Austin)</td>
+                <td>4.5&ndash;4.8</td>
+                <td>150&ndash;400</td>
+                <td>Regional franchise, custom design</td>
+                <td>Multiple locations: Georgetown, Austin, Bee Cave</td>
+                <td>(512) 219-7200</td>
+              </tr>
+              <tr>
+                <td>Crystal Clear Pools &amp; Spas</td>
+                <td>4.7</td>
+                <td>&mdash;</td>
+                <td>Repair, construction, maintenance</td>
+                <td>10510 Motheral Dr Ste 100, Austin 78753</td>
+                <td>(512) 339-9304</td>
+              </tr>
+              <tr>
+                <td>Master Pools of Austin</td>
+                <td>4.3</td>
+                <td>&mdash;</td>
+                <td>High-end pools & spas</td>
+                <td>3924 Norwood Ln STE 100, Del Valle 78617</td>
+                <td>(512) 243-4717</td>
+              </tr>
+              <tr>
+                <td>Premier Pools &amp; Spas (Georgetown)</td>
+                <td>4.5</td>
+                <td>&mdash;</td>
+                <td>National franchise builds</td>
+                <td>Georgetown, TX</td>
+                <td>(512) 763-7876</td>
+              </tr>
+              <tr>
+                <td>Prime Pool Service</td>
+                <td>4.7</td>
+                <td>&mdash;</td>
+                <td>Commercial & residential maintenance</td>
+                <td>12014 N Lamar Blvd, Austin 78753</td>
+                <td>(512) 222-3112</td>
+              </tr>
+              <tr>
+                <td>A-TEX Hot Tubs &amp; Pools (North)</td>
+                <td>4.8</td>
+                <td>&mdash;</td>
+                <td>Retail + service + repairs</td>
+                <td>8700 Burnet Rd, Austin 78757</td>
+                <td>(512) 459-3232</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Geographic Coverage View</h2>
+        <p class="muted">Northwest and western corridors are saturated with luxury builders; south and east Austin remain light on boutique coverage.</p>
+        <div class="grid grid-3">
+          <div class="panel">
+            <h3>NW Austin / Cedar Park</h3>
+            <ul>
+              <li>Denali Pools (Cedar Park)</li>
+              <li>Reliant Pools</li>
+              <li>Austin Dreamscapes</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Lake Travis / Bee Cave</h3>
+            <ul>
+              <li>Cascade Custom Pools</li>
+              <li>Cody Pools Bee Cave</li>
+              <li>Austin Pools</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Central &amp; Downtown</h3>
+            <ul>
+              <li>Athena Pools</li>
+              <li>POOL LUX LLC</li>
+              <li>Westbank Pools</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Southwest Corridor</h3>
+            <ul>
+              <li>Denali Pools (Austin)</li>
+              <li>Wild Basin Pools</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>East / Maintenance</h3>
+            <ul>
+              <li>Master Pools of Austin</li>
+              <li>Crystal Clear Pools &amp; Spas</li>
+              <li>Prime Pool Service</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>South Austin Gap</h3>
+            <ul>
+              <li>Few boutique listings surfaced</li>
+              <li>Opportunity for localized SEO</li>
+              <li>Target 78704, 78745, 78748</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Moats &amp; Opportunity Matrix</h2>
+        <div class="grid grid-3">
+          <div class="panel">
+            <h3>Scale Moat</h3>
+            <ul>
+              <li>Denali & Cody own review velocity.</li>
+              <li>Multi-location footprint boosts SERP share.</li>
+              <li>Franchise processes likely reduce CAC.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Boutique Edge</h3>
+            <ul>
+              <li>POOL LUX & Westbank lead design story.</li>
+              <li>5.0 ratings with low volume = fragile moat.</li>
+              <li>Content marketing can amplify craft angle.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Service Gap</h3>
+            <ul>
+              <li>Maintenance-first players sparse.</li>
+              <li>Bundle upkeep plans for recurring revenue.</li>
+              <li>Own seasonal content & email nurture.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" style="margin-top: 24px">
+          <h3>Playbook Recommendations</h3>
+          <ul>
+            <li><strong>Review Burst:</strong> Drive 30 new reviews in 60 days for boutique builders to close trust gap.</li>
+            <li><strong>Localized Landing Pages:</strong> Target south/east Austin zip codes with tailored service pages.</li>
+            <li><strong>Maintenance Upsell:</strong> Launch service plan lead magnets; highlight scarcity of direct competitors.</li>
+            <li><strong>Partnership Strikes:</strong> Pair builders with A-TEX, Prime Pool Service for cross-referrals.</li>
+            <li><strong>Content Calendar:</strong> Showcase case studies contrasting franchise vs. artisan to attract homeowners.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Actionable Next Steps</h2>
+        <div class="grid grid-3">
+          <div class="panel">
+            <h3>01 &mdash; Expand Dataset</h3>
+            <p class="muted">Run additional Google Maps MCP queries by zip code to quantify south/east presence and validate whitespace.</p>
+          </div>
+          <div class="panel">
+            <h3>02 &mdash; Enrich Profiles</h3>
+            <p class="muted">Use Place IDs with a reviews API to unlock review velocity, sentiment themes, and keyword extraction for content.</p>
+          </div>
+          <div class="panel">
+            <h3>03 &mdash; Package Offers</h3>
+            <p class="muted">Create tiered outreach kits: review acceleration, geo-landing builds, maintenance launch campaigns.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Build Your Own Google Maps MCP Server</h2>
+        <div class="panel">
+          <h3>Core Setup</h3>
+          <ul>
+            <li>Spin up a lightweight Node/TypeScript project that implements the MCP server protocol.</li>
+            <li>Register a Google Cloud project, enable Places API, and secure an API key with IP/domain restrictions.</li>
+            <li>Create handlers that wrap Places text search/lookups and normalize outputs (name, rating, Place ID, coordinates, contact info).</li>
+            <li>Expose the handlers as MCP tools (e.g., <code>google_maps_search</code>) and define schemas for consistent client consumption.</li>
+          </ul>
+        </div>
+        <div class="panel" style="margin-top: 18px">
+          <h3>Operational Hygiene</h3>
+          <ul>
+            <li>Implement rate limiting + caching to stay within Google quotas and reduce latency.</li>
+            <li>Log requests/responses (omit PII) for debugging and analytics on query demand.</li>
+            <li>Add configuration support (env vars, secrets manager) so clients can swap keys or endpoints securely.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Next-Level Enhancements</h2>
+        <div class="grid grid-3">
+          <div class="panel">
+            <h3>Advanced Data</h3>
+            <ul>
+              <li>Augment Place IDs with Places Details or review-export providers for timestamps, text, and owner replies.</li>
+              <li>Blend in census, permitting, or housing starts data to quantify true market demand.</li>
+              <li>Create scheduled refresh jobs so dashboards auto-update weekly.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Analytics Layer</h3>
+            <ul>
+              <li>Compute review velocity, sentiment clusters, keyword clouds, and service coverage indexes.</li>
+              <li>Feed outputs into BI dashboards (Looker, Metabase) or marketing CRMs for alerts.</li>
+              <li>Automate playbook recommendations via LLM prompts grounded in the structured data.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Productization</h3>
+            <ul>
+              <li>Offer niche audits as packaged deliverables; gate richer analytics behind subscriptions.</li>
+              <li>Launch client portals with HTML exports like this report plus interactive charts.</li>
+              <li>Pipe insights into outbound sequences or ad platforms for auto-personalized campaigns.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <p class="footnote">
+        Source: Google Maps MCP (google_maps_search) &mdash; data retrieved Oct&nbsp;22&nbsp;2025. Ratings and review counts are subject to change.
+      </p>
+    </article>
+  </body>
+</html>
+

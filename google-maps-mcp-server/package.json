@@ -1,0 +1,32 @@
+{
+  "name": "server-google-maps-grounding",
+  "version": "1.0.0",
+  "description": "MCP server for Google Maps Grounding API with Gemini",
+  "type": "module",
+  "bin": {
+    "server-google-maps-grounding": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "google-maps",
+    "gemini",
+    "grounding"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
